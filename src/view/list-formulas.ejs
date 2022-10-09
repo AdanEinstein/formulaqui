@@ -1,0 +1,31 @@
+<%- include('./partials/header.ejs')%>
+<div class="container">
+	<div class="row mt-5">
+		<div class="col-md-1"></div>
+		<div class="col-md-10">
+			<table class="table table-hover">
+				<thead>
+				  <tr>
+					<th scope="col">#</th>
+					<th scope="col">Nome</th>
+					<th scope="col">Autor</th>
+					<th scope="col">Categoria</th>
+					<th scope="col">Fórmula</th>
+				  </tr>
+				</thead>
+				<tbody>
+				  <tr style="cursor: pointer;" id=<%= formulas[0].id %>>
+					<th scope="row"><%= formulas[0].id %> </th>
+					<td><%= formulas[0].nome %> </td>
+					<td><%= formulas[0].autor %> </td>
+					<td><%= formulas[0].categoria %> </td>
+					<td><%= formulas[0].formula %> </td>
+				  </tr>
+				</tbody>
+			  </table>
+		</div>
+		<div class="col-md-1"></div>
+	</div>
+</div>
+<script src="js/list.js"></script>
+<%- include('./partials/footer.ejs')%>
