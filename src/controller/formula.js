@@ -2,6 +2,7 @@
  * @type { (app: import('express').Express) => void }
  */
 module.exports = (app) => {
+    const Formula = app.src.model.Formula;
     const save = (req, res) => {
         const formula = { ...req.body };
         if (req.params.id) {
@@ -21,7 +22,7 @@ module.exports = (app) => {
 
     const getById = async (req, res) => {
         try {
-            return await app
+            const data = await app
                 .db("formulas")
                 .select(
                     "id",
@@ -33,6 +34,14 @@ module.exports = (app) => {
                 )
                 .where({ id: req.params.id })
                 .first();
+            return new Formula(
+                data.id,
+                data.nome,
+                data.autor,
+                data.categoria,
+                data.descricao,
+                data.formula
+            );
         } catch (error) {
             return res.status(500).send(error);
         }
@@ -42,13 +51,13 @@ module.exports = (app) => {
         app.db("formulas")
             .where({ id: req.params.id })
             .del()
-            .then(() => res.redirect('/list-formulas'))
+            .then(() => res.redirect("/list-formulas"))
             .catch((err) => res.status(500).send(err));
     };
 
     const get = async (req, res) => {
         try {
-            return await app
+            const data = await app
                 .db("formulas")
                 .select(
                     "id",
@@ -58,6 +67,10 @@ module.exports = (app) => {
                     "descricao",
                     "formula"
                 );
+            const formulas = data.map(f => {
+                return new Formula(f.id, f.nome, f.autor, f.categoria, f.descricao, f.formula);
+            })
+            return formulas
         } catch (error) {
             return res.status(500).send(error);
         }

@@ -9,7 +9,7 @@
                         type="text"
                         class="form-control"
                         id="id"
-                        value="<%= formula.id %>"
+                        value="<%= formula.getId() %>"
                         name="id"
                         disabled
                     />
@@ -20,7 +20,7 @@
                         type="text"
                         class="form-control"
                         id="nome"
-                        value="<%= formula.nome %> "
+                        value="<%= formula.getNome() %> "
                         name="nome"
                         required
                     />
@@ -31,7 +31,7 @@
                         type="text"
                         class="form-control"
                         id="autor"
-                        value="<%= formula.autor %>"
+                        value="<%= formula.getAutor() %>"
                         name="autor"
                         required
                     />
@@ -43,7 +43,7 @@
                         class="form-control"
                         id="categoria"
                         name="categoria"
-                        value="<%= formula.categoria %>"
+                        value="<%= formula.getCategoria() %>"
                         required
                     />
                     <label for="categoria">Categoria:</label>
@@ -56,23 +56,26 @@
                         name="descricao"
                         required
                     >
-<%= formula.descricao %></textarea
+<%= formula.getDescricao() %></textarea
                     >
                     <label for="descricao">Descrição:</label>
                 </div>
-                <div class="form-floating mb-3">
-                    <textarea
-                        class="form-control"
-                        id="formula"
-                        style="height: 200px"
-                        name="formula"
-                        required
-                    >
-<%= formula.formula %></textarea
-                    >
-                    <label for="formula">Fórmula:</label>
+                <div class="row container">
+                    <div class="col-5">
+                        <div class="form-floating mb-3">
+                            <textarea
+                            class="form-control"
+                                id="formula"
+                                style="height: 200px"
+                                name="formula"
+                                required
+                            ><%= formula.getFormula() %> </textarea>
+                            <label for="formula">Fórmula:</label>
+                        </div>
+                    </div>
+                    <div class="col-7 result bg-white d-flex justify-content-center align-items-center" id="result"></div>
                 </div>
-                <div class="d-flex justify-content-end">
+                <div class="d-flex justify-content-end mt-3">
                     <a
                         class="btn btn-dark btn-sm"
                         target="_blank"
@@ -101,5 +104,6 @@
         <div class="col-md-2"></div>
     </div>
 </div>
-<script src="/js/formula.js" ></script>
+<script type="module" src="/js/formula.js"></script>
+<script src="/js/update.js" ></script>
 <%- include('./partials/footer.ejs')%>

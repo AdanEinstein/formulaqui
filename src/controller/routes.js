@@ -11,15 +11,15 @@ module.exports = (app) => {
     }).post("/add-formula", app.src.controller.formula.save);
     app.get("/list-formulas", async (req, res) => {
         const formulas = await app.src.controller.formula.get(req, res);
-        formulas.map((formula) => {
+        formulas.map((form) => {
             try {
-                const f = katex.renderToString(formula.formula, {
+                const f = katex.renderToString(form.getFormula(), {
                     throwOnError: false,
                     output: "mathml",
                 });
-                formula.formula = f;
+                form.setFormula(f);
             } catch (error) {}
-            return formula;
+            return form;
         });
         res.render("list-formulas", { formulas });
     });

@@ -45,4 +45,6 @@ class Formula {
     }
 }
 
-module.exports = (app) => Formula;
+module.exports = (app) => {
+    return Formula;
+};

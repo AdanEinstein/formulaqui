@@ -1,8 +1,17 @@
-const btnDelete = document.getElementById("deletar");
-const id = document.getElementById("id").value;
+import katex from '/js/katex.mjs';
+const result = document.getElementById("result");
+const formula = document.getElementById("formula");
 
-btnDelete.onclick = deletar;
+result.innerHTML = katex.renderToString(formula.value, {
+    throwOnError: false,
+    output: "mathml",
+});
 
-function deletar() {
-    location.assign(`/delete/${id}`);
+formula.addEventListener("keyup", handleFormula);
+
+function handleFormula(e) {
+    result.innerHTML = katex.renderToString(e.target.value, {
+        throwOnError: false,
+        output: "mathml",
+    });
 }

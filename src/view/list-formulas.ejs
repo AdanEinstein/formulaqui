@@ -16,12 +16,12 @@
                 </thead>
                 <tbody>
                     <% formulas.forEach(f => { %>
-                    <tr style="cursor: pointer" id="<%= f.id %>">
-                        <th scope="row"><%= f.id %></th>
-                        <td><%= f.nome %></td>
-                        <td><%= f.autor %></td>
-                        <td><%= f.categoria %></td>
-                        <td><%- f.formula %></td>
+                    <tr style="cursor: pointer" id="<%= f.getId() %>">
+                        <th scope="row"><%= f.getId() %></th>
+                        <td><%= f.getNome() %></td>
+                        <td><%= f.getAutor() %></td>
+                        <td><%= f.getCategoria() %></td>
+                        <td><%- f.getFormula() %></td>
                     </tr>
                     <% }) %>
                 </tbody>

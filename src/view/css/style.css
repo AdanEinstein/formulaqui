@@ -30,10 +30,14 @@
     background-color: #f0f8ff;
     border-radius: 10px;
     box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px,
-        rgba(0, 0, 0, 0.22) 0px 15px 12px;
+    rgba(0, 0, 0, 0.22) 0px 15px 12px;
 }
 
 .footer {
     grid-area: footer;
     background-color: #ffffff22;
+}
+
+.result{
+    border-radius: 10px;
 }
