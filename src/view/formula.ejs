@@ -1,60 +1,105 @@
 <%- include('./partials/header.ejs')%>
 <div class="container">
-	<div class="row mt-5">
-		<div class="col-md-2"></div>
-		<div class="col-md-8">
-			<form action="/formula" method="post">
-				<div class="form-floating mb-3">
-					<input type="text" class="form-control" id="id" value="<%= formula.id %>" name="id" readonly/>
-					<label for="id">Identificador:</label>
-				</div>
-				<div class="form-floating mb-3">
-					<input type="text" class="form-control" id="nome" value="<%= formula.nome %> " name="nome" required/>
-					<label for="nome">Nome da fórmula:</label>
-				</div>
-				<div class="form-floating mb-3">
-					<input type="text" class="form-control" id="autor" value="<%= formula.autor %>" name="autor" required/>
-					<label for="autor">Autor:</label>
-				</div>
-				<div class="form-floating mb-3">
-					<select class="form-select" id="categoria" name="categoria">
-					  <option selected>Selecione a categoria</option>
-					  <option value="1">Exemplo</option>
-					  <option value="2">Two</option>
-					  <option value="3">Three</option>
-					</select>
-					<label for="categoria">Categoria:</label>
-				  </div>
-				<div class="form-floating mb-3">
-					<textarea class="form-control" id="descricao" style="height: 100px;" name="descricao" required><%= formula.descricao %></textarea>
-					<label for="descricao">Descrição:</label>
-				</div>
-				<div class="form-floating mb-3">
-					<textarea
-						class="form-control"
-						id="formula"
-						style="height: 200px"
-						name="formula"
+    <div class="row mt-5">
+        <div class="col-md-2"></div>
+        <div class="col-md-8">
+            <form method="post">
+                <div class="form-floating mb-3">
+                    <input
+                        type="text"
+                        class="form-control"
+                        id="id"
+                        value="<%= formula.id %>"
+                        name="id"
+                        disabled
+                    />
+                    <label for="id">Identificador:</label>
+                </div>
+                <div class="form-floating mb-3">
+                    <input
+                        type="text"
+                        class="form-control"
+                        id="nome"
+                        value="<%= formula.nome %> "
+                        name="nome"
                         required
-					><%= formula.formula %></textarea>
-					<label for="formula">Fórmula:</label>
-				</div>
+                    />
+                    <label for="nome">Nome da fórmula:</label>
+                </div>
+                <div class="form-floating mb-3">
+                    <input
+                        type="text"
+                        class="form-control"
+                        id="autor"
+                        value="<%= formula.autor %>"
+                        name="autor"
+                        required
+                    />
+                    <label for="autor">Autor:</label>
+                </div>
+                <div class="form-floating mb-3">
+                    <input
+                        type="text"
+                        class="form-control"
+                        id="categoria"
+                        name="categoria"
+                        value="<%= formula.categoria %>"
+                        required
+                    />
+                    <label for="categoria">Categoria:</label>
+                </div>
+                <div class="form-floating mb-3">
+                    <textarea
+                        class="form-control"
+                        id="descricao"
+                        style="height: 100px"
+                        name="descricao"
+                        required
+                    >
+<%= formula.descricao %></textarea
+                    >
+                    <label for="descricao">Descrição:</label>
+                </div>
+                <div class="form-floating mb-3">
+                    <textarea
+                        class="form-control"
+                        id="formula"
+                        style="height: 200px"
+                        name="formula"
+                        required
+                    >
+<%= formula.formula %></textarea
+                    >
+                    <label for="formula">Fórmula:</label>
+                </div>
                 <div class="d-flex justify-content-end">
                     <a
-					class="btn btn-dark btn-sm"
-					target="_blank"
-					href="https://webdemo.myscript.com/views/math/index.html"
-					>Clique aqui para formatar sua equação</a
+                        class="btn btn-dark btn-sm"
+                        target="_blank"
+                        href="https://webdemo.myscript.com/views/math/index.html"
+                        >Clique aqui para formatar sua equação em LaTeX</a
                     >
                 </div>
-                <div class="d-flex mt-3">
-                    <a href="/list-formulas" class="btn btn-lg btn-secondary w-50 me-1">Voltar</a>
-                    <button class="btn btn-lg btn-danger w-50 me-1">Deletar</button>
-                    <button type="submit" class="btn btn-lg btn-warning w-50 ms-1">Editar</button>
+                <div class="d-flex my-3">
+                    <a
+                        href="/list-formulas"
+                        class="btn btn-lg btn-secondary w-50 me-1"
+                        >Voltar</a
+                    >
+                    <button id="deletar" type="button" class="btn btn-lg btn-danger w-50 me-1">
+                        Deletar
+                    </button>
+                    <button
+                        type="submit"
+                        class="btn btn-lg btn-warning w-50 ms-1"
+                    >
+                        Editar
+                    </button>
                 </div>
             </form>
-		</div>
-		<div class="col-md-2"></div>
-	</div>
+        </div>
+        <div class="col-md-2"></div>
+    </div>
 </div>
+<script src="/js/formula.js" ></script>
 <%- include('./partials/footer.ejs')%>

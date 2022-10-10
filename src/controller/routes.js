@@ -1,29 +1,32 @@
+const katex = require("katex");
 /**
  * @type { (app: import('express').Express) => void }
  */
 module.exports = (app) => {
-	app.post('/add-formula', (req, res) => {
-        try {
-            console.log(req.body);
-            res.render('list-formulas')
-        } catch (error) {
-            console.log(error.message);
-        }
-    })
-	app.post('/add-categoria', (req, res) => {
-        try {
-            console.log(req.body);
-            res.render('add-categoria')
-        } catch (error) {
-            console.log(error.message);
-        }
-    })
-	app.post('/formula', (req, res) => {
-        try {
-            console.log(req.body);
-            res.render('formula', { formula : req.body})
-        } catch (error) {
-            console.log(error.message);
-        }
-    })
+    app.get("/", (req, res) => {
+        res.render("index");
+    });
+    app.get("/add-formula", (req, res) => {
+        res.render("add-formula");
+    }).post("/add-formula", app.src.controller.formula.save);
+    app.get("/list-formulas", async (req, res) => {
+        const formulas = await app.src.controller.formula.get(req, res);
+        formulas.map((formula) => {
+            try {
+                const f = katex.renderToString(formula.formula, {
+                    throwOnError: false,
+                    output: "mathml",
+                });
+                formula.formula = f;
+            } catch (error) {}
+            return formula;
+        });
+        res.render("list-formulas", { formulas });
+    });
+    app.get("/formula/:id", async (req, res) => {
+        const formula = await app.src.controller.formula.getById(req, res);
+        res.render("formula", { formula });
+    });
+    app.post("/formula/:id", app.src.controller.formula.save);
+    app.get("/delete/:id", app.src.controller.formula.remove);
 };
