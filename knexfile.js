@@ -5,12 +5,7 @@
  */
 module.exports = {
     client: "mysql",
-    connection: {
-        host: process.env.HOST_DATABASE,
-        user: process.env.USER_DATABASE,
-        password: process.env.PASSWORD_DATABASE,
-        database: "formulaqui",
-    },
+    connection: process.env.URL_DATABASE,
     pool: {
         min: 2,
         max: 10,
