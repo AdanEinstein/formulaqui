@@ -17,6 +17,6 @@ consign()
     .then("./src/controller/routes.js")
     .into(app);
 
-app.listen("8080", () => {
+app.listen(process.env.PORT, () => {
     console.log("Servidor executando...");
 });
