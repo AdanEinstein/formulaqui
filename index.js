@@ -17,6 +17,6 @@ consign()
     .then("./src/controller/routes.js")
     .into(app);
 
-app.listen("4000", () => {
+app.listen("8080", () => {
     console.log("Servidor executando...");
 });
